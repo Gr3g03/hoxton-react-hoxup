@@ -30,17 +30,13 @@ export default function MainPage() {
                         value=""
                     />
                 </form>
-
-
                 {/* /* <!--Side Chat List goes here. Check side-chat-list.html--> */}
 
                 <SideChat />
             </aside>
 
+
             {/* /* <!-- Main Chat Section --> */}
-
-
-
             <main className="conversation">
                 {/* <!-- Chat header --> */}
                 <header className="panel"></header>
