@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 
 export default function Login() {
@@ -39,18 +40,21 @@ export default function Login() {
                     {
                         users.map(user =>
                             <li key={user.id}>
-                                <button className="user-selection"
-                                >
-                                    <img
-                                        className="avatar"
-                                        width="50"
-                                        height="50"
-                                        src={user.avatar}
-                                        alt={user.firstName}
-                                    />
-                                    <h3>{user.firstName}  {user.lastName}</h3>
-                                </button>
+                                <Link to={"/logedin"}>
+                                    <button className="user-selection"
+                                    >
+                                        <img
+                                            className="avatar"
+                                            width="50"
+                                            height="50"
+                                            src={user.avatar}
+                                            alt={user.firstName}
+                                        />
+                                        <h3>{user.firstName}  {user.lastName}</h3>
+                                    </button>
+                                </Link>
                             </li>
+
                         )}
 
                     <li>
