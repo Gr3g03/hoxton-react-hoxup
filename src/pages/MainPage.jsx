@@ -2,8 +2,12 @@ import MainMessages from "./Messages";
 import SideChat from "./SideChat";
 import '../styles/index.css'
 import '../styles/reset.css'
+import { useState } from "react";
 
 export default function MainPage() {
+
+    const [logedInUser, setLogedInUser] = useState([])
+
     return (
         <div className="main-wrapper">
             {/* <!-- Side Panel --> */}
