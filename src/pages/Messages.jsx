@@ -1,4 +1,14 @@
+import { useEffect, useState } from "react"
+
 export default function MainMessages() {
+
+    const [messages, setMessages] = useState(null)
+
+    useEffect(() => {
+        fetch('http://localhost:4000/messages')
+            .then(resp => resp.json)
+            .then(messagesFromServer => setMessages(messagesFromServer))
+    }, [])
     return (
         <ul className="conversation__messages">
             <li className="outgoing">
