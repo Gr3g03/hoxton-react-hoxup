@@ -2,12 +2,12 @@ import MainMessages from "./Messages";
 import SideChat from "./SideChat";
 import '../styles/index.css'
 import '../styles/reset.css'
-import { useState } from "react";
 
-export default function MainPage(logedin) {
+export default function MainPage(props) {
 
-    const [logedInUser, setLogedInUser] = useState([])
+    // const [logedInUser, setLogedInUser] = useState([])
 
+    if (props.logedin === null) return <p>Loading...</p>
     return (
         <div className="main-wrapper">
             {/* <!-- Side Panel --> */}
@@ -19,10 +19,10 @@ export default function MainPage(logedin) {
                         className="avatar"
                         width="50"
                         height="50"
-                        src="https://robohash.org/2"
+                        src={props.logedin.avatar}
                         alt=""
                     />
-                    <h3>{logedin.firstName}</h3>
+                    <h3>{props.logedin.firstName} {props.logedin.lastName}</h3>
                 </header>
 
                 {/* <!-- Search form --> */}
@@ -55,7 +55,6 @@ export default function MainPage(logedin) {
                         <input
                             type="text"
                             placeholder="Type a message"
-                            //   rows={1}
                             value=""
                         /><button type="submit">
                             {/* <!-- This is the send button --> */}
