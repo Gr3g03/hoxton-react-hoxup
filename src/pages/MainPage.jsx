@@ -4,7 +4,7 @@ import '../styles/index.css'
 import '../styles/reset.css'
 import { useState } from "react";
 
-export default function MainPage() {
+export default function MainPage(logedin) {
 
     const [logedInUser, setLogedInUser] = useState([])
 
@@ -22,7 +22,7 @@ export default function MainPage() {
                         src="https://robohash.org/2"
                         alt=""
                     />
-                    <h3>Tin Man</h3>
+                    <h3>{logedin.firstName}</h3>
                 </header>
 
                 {/* <!-- Search form --> */}
