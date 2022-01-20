@@ -1,41 +1,25 @@
 import { useEffect, useState } from "react"
 import { useNavigate, } from "react-router-dom"
+import UserLogin from "./components/UserLogin"
 
 
-export default function Login(props) {
+export default function Login({ login, users, setModal, modal }) {
 
 
     const navigate = useNavigate()
 
 
 
-
-
-    if (props.users === null) return <p>Loading...</p>
+    if (users === null) return <p>Loading...</p>
     return (
         <div className="main-wrapper login">
             <section className="login-section">
                 <h2>Choose your user!</h2>
                 <ul>
                     {
-                        props.users.map(user =>
+                        users.map(user =>
                             <li key={user.id}  >
-                                <button className="user-selection"
-                                    onClick={(e) => {
-                                        props.setLogedin(user)
-                                        navigate('/logedin')
-
-                                    }}
-                                >
-                                    <img
-                                        className="avatar"
-                                        width="50"
-                                        height="50"
-                                        src={user.avatar}
-                                        alt={user.firstName}
-                                    />
-                                    <h3>{user.firstName}  {user.lastName}</h3>
-                                </button>
+                                <UserLogin login={login} user={user} />
 
                             </li>
 
@@ -44,7 +28,7 @@ export default function Login(props) {
                     <li>
                         <button
                             className='user-selection'
-                            onClick={() => props.setModal('new-user')}
+                            onClick={() => setModal('new-user')}
                         >
                             <h3>+ Add a new user</h3>
                         </button>

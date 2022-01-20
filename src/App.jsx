@@ -1,21 +1,27 @@
 import MainPage from "./pages/MainPage";
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import Login from "./pages/LoginPage";
 import { useEffect, useState } from "react/cjs/react.development";
 import ModalWraper from "./pages/Modal";
+import NotFound from "./pages/NotFound";
 
 
 export default function App() {
 
   const [logedin, setLogedin] = useState(null)
   const [modal, setModal] = useState('')
-  const [users, setUsers] = useState(null)
+  const [users, setUsers] = useState([])
 
+  const navigate = useNavigate()
 
-  const login = () => {
-    fetch(`http://localhost:4000/users/`)
-      .then(resp => resp.json())
-      .then(getUserToLogin => setLogedin(getUserToLogin))
+  function login(user) {
+    setLogedin(user)
+
+    navigate('/logedin')
+  }
+
+  function logOut() {
+    setLogedin(null)
 
   }
 
@@ -40,7 +46,6 @@ export default function App() {
     }).then(resp => resp.json)
       .then((newUser) => {
         const updatedUser = JSON.parse(JSON.stringify(users))
-        // const match = updatedUser.find((target) => target === users)
         updatedUser.push({
           firstName: firstName,
           lastName: lastName,
@@ -54,13 +59,10 @@ export default function App() {
     <div className='app'>
       <Routes>
         <Route index element={<Navigate replace to="/login" />} />
-        <Route path="login" element={<Login setLogedin={setLogedin} users={users} setModal={setModal} modal={modal} />} />
-        <Route path="logedin" element={<MainPage logedin={logedin}
-          setLogedin={setLogedin}
-
-        />} />
-        <Route path="logedin:conversationId" element={<MainPage />} />
-
+        <Route path="/login" element={<Login users={users} setModal={setModal} modal={modal} login={login} />} />
+        <Route path="/logedin" element={<MainPage logedin={logedin} logOut={logOut} users={users} />} />
+        <Route path="/logedin/:conversationId" element={<MainPage logedin={logedin} logOut={logOut} users={users} />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
 
       {modal === 'new-user' ? (
@@ -71,7 +73,9 @@ export default function App() {
             </button>
             <form className="new-user" onSubmit={(e) => {
               e.preventDefault()
+              // @ts-ignore
               addANewUser(e.target.firstName.value, e.target.lastName.value, e.target.phoneNumber.value)
+              // @ts-ignore
               e.target.reset()
             }}>
               <label htmlFor="firstName">First name</label>
@@ -86,8 +90,6 @@ export default function App() {
         </div>
       ) : null}
 
-
-      {/* <ModalWraper /> */}
     </div>
   )
 }

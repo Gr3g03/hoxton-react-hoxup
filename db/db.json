@@ -41,6 +41,59 @@
       "id": 6
     }
   ],
-  "messages": [],
-  "conversations": []
+  "messages": [
+    {
+      "userId": 1,
+      "messageText": "Hello! 👋",
+      "conversationId": 1,
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "messageText": "Yo! 👋",
+      "conversationId": 2,
+      "id": 2
+    },
+    {
+      "userId": 3,
+      "messageText": "Sup?! 🎉",
+      "conversationId": 2,
+      "id": 3
+    },
+    {
+      "userId": 3,
+      "messageText": "How are you?",
+      "conversationId": 3,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "messageText": "All good, and you?",
+      "conversationId": 3,
+      "id": 5
+    },
+    {
+      "userId": 3,
+      "messageText": "Yeah, just chillin",
+      "conversationId": 3,
+      "id": 6
+    }
+  ],
+  "conversations": [
+    {
+      "userId": 1,
+      "participantId": 2,
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "participantId": 3,
+      "id": 2
+    },
+    {
+      "userId": 3,
+      "participantId": 1,
+      "id": 3
+    }
+  ]
 }
